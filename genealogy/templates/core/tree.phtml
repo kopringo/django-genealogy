@@ -1,0 +1,34 @@
+<? include 'header.phtml'; ?>
+
+<div id="list1">
+<?foreach($this->personsArray as $personArray){?>
+	<div data-type="person" data-handle="<?=$personArray['handle']?>" data-family-handle="<?=@$personArray['family_handle']?>">
+	<span><?=$personArray['gid']?></span>
+	<span><?=$personArray['surname']?></span>
+	<span><?=$personArray['name']?></span>
+	</div>
+<?}?>
+<?foreach($this->familyArray as $familyArray){?>
+	<div data-type="family" data-handle="<?=@$familyArray['handle']?>">
+		<div class="father" data-handle="<?=@$familyArray['father_handle']?>"></div>
+		<div class="mother" data-handle="<?=@$familyArray['mother_handle']?>"></div>
+		<div class="childs"></div>
+	</div>
+<?}?>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$.each($('#list1 > div[data-type=person]'), function(i, obj){
+		var h = $(obj).attr('data-family-handle');
+		if(h == undefined) return;
+		var $fam = $("div[data-type=family][data-handle="+h+"]");
+		if($fam){
+			$(obj).appendTo($fam.find('.childs'));
+			$(obj).remove();
+		}
+	});
+});
+</script>
+
+<? include 'footer.phtml'; ?>

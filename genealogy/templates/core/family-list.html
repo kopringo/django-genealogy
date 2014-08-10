@@ -1,0 +1,35 @@
+{% extends "base.html" %}{% load i18n %}
+
+{% block content %}
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th colspan="2">Mąż</th>
+            <th colspan="2">Żona</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>#</th>
+            <th>Nazwisko</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Imię</th>
+            <th>Slub</th>
+          </tr>
+        </thead>
+        <tbody>
+        	{% for family in family_array %}
+        	<tr>
+        		<td>{{family.handle}}</td>
+        		<td>{{family.father.last_name}}</td>
+        		<td>{{family.father.first_name}}</td>
+        		<td>{{family.mother.last_name}}</td>
+        		<td>{{family.mother.first_name}}</td>
+        		<td></td>
+        	</tr>
+        	{% endfor %}
+        </tbody>
+</table>
+
+{% endblock %}

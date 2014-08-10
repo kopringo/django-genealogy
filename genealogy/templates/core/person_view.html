@@ -1,0 +1,38 @@
+{% extends "base.html" %}{% load i18n %}
+
+{% block content %}
+
+<legend>{{person.last_name}} {{person.first_name}}</legend>
+<div class="row-fluid">
+	<div class="span8">
+
+<pre>notatka</pre><br/>
+
+Narodziny:<br/>
+Śmierć:<br/>
+Rodzice:<br/>
+<a href="{{person.parent_family.father.get_url}}">{{person.parent_family.father}}</a>
+ <a href="{{person.parent_family.mother.get_url}}">{{person.parent_family.mother}}</a>
+	
+	</div>
+	<div class="span4">
+	zdjęcia i dokumenty
+	</div>
+</div>
+
+
+<legend>Rodzina</legend>
+
+<ul>
+{% for family in person.families.all %}
+	<li><p><a href="{{family.father.get_url}}">{{family.father}}</a> i <a href="{{family.mother.get_url}}">{{family.mother}}</a> ({{family.marriage}})</p>
+		<ul>
+		{% for child in family.parent_family.all %}
+			<li><a href="{{child.get_url}}">{{ child }}</a></li>
+		{% endfor %}
+		</ul>
+	</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

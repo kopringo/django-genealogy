@@ -1,0 +1,37 @@
+{% extends "base.html" %}{% load i18n %}
+
+{% block content %}
+
+banches
+
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th colspan="2">Mąż</th>
+            <th colspan="2">Żona</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>#</th>
+            <th>Nazwisko</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Imię</th>
+            <th>Slub</th>
+          </tr>
+        </thead>
+        <tbody>
+        	{% for person in persons %}
+        	<tr>
+        		<td>{{person.handle}}</td>
+        		<td>{{person.first_name}}</td>
+        		<td>{{person.last_name}}</td>
+        		<td>{{person.birth.year1}}</td>
+        		<td>{{person.birth.place}}</td>
+        	</tr>
+        	{% endfor %}
+        </tbody>
+</table>
+
+{% endblock %}

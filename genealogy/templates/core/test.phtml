@@ -1,0 +1,28 @@
+{% extends "base.html" %}{% load i18n %}
+
+{% block content %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://talos.github.com/jquery-svgpan/jquery-svgpan.min.js"></script>
+<style type="text/css">@import "http://keith-wood.name/css/jquery.svg.css";
+#area { width: 400px; height: 300px; border: 1px solid #484; }
+
+</style> 
+<script type="text/javascript" src="http://keith-wood.name/js/jquery.svg.js"></script>
+<script type="text/javascript" src="http://keith-wood.name/js/jquery.svganim.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	$("#area").svg();
+	
+	var svg = $('#area').svg('get'); 
+	svg.circle(130, 75, 50, {fill: 'green', stroke: 'red', strokeWidth: 3, id: 'cos'});
+	svg.line(10, 10, 90, 90, {stroke: 'blue', strokeWidth: 2, class_: 'myline'});
+    
+    
+    $('svg').svgPan('cos');
+});
+</script>
+<div id="area"></div>
+
+{% endblock %}
+
